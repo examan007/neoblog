@@ -1,0 +1,13 @@
+﻿#Account {
+    text-align: center;
+}
+#Post-Form-Wrap {
+    padding-left: 10%;
+}
+#Post-Input-Message {
+    width: 30em;
+    height: 10em;
+}
+.Post-Input-text {
+    width: 30em;
+}
