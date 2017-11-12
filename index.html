@@ -15,6 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.css" rel="stylesheet">
     <link href="public/Account.css" rel="stylesheet">
+    <link href="public/modal.css" rel="stylesheet">
     <link href="ng/Account.css" rel="stylesheet">
     
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -80,25 +81,24 @@
             <div id="divWrap" ng-app="useApp">
                 <div id="Account" style="display:none">
                     <div ng-controller="UseController as useList">
-                        <table id="{{useList.title}}-Data-Table" width="100%">
-                            <tr>
-                                <td width="30%">
-                                </td>
-                                <td>
-                                    <h2 class="{{useList.title}}-Header">{{useList.title}}</h2>
-                                </td>
-                                <td ng-repeat="obj in useList.actions" style="text-align:left">
-                                    <button class="Toolbar-Button"
-                                            id="{{useList.title}}-Save-{{obj}}"
-                                            onclick="Controller.select(this)">
-                                        <span id="Save-Span">
-                                            {{obj}}
-                                        </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
                         <form name="{{useList.title}}-Form" method="post" ng-submit="useList.validate(this);" target="_blank">
+                            <table id="{{useList.title}}-Data-Table" width="100%">
+                                <tr>
+                                    <td width="30%"></td>
+                                    <td>
+                                        <h2 class="{{useList.title}}-Header">{{useList.title}}</h2>
+                                    </td>
+                                    <td ng-repeat="obj in useList.actions" style="text-align:left">
+                                        <button class="Toolbar-Button"
+                                                id="{{useList.title}}-Save-{{obj}}"
+                                                onclick="Controller.select(this)">
+                                            <span id="Save-Span">
+                                                {{obj}}
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
                             <div id="{{useList.title}}-Form-Wrap">
                                 <table id="{{useList.title}}-Table">
                                     <tr ng-repeat="obj in useList.objects">
@@ -106,31 +106,31 @@
                                             <span class="done-{{obj.name}}">{{obj.name}}:&nbsp;</span>
                                         </td>
                                         <td class="{{useList.title}}-Input"
-                                             style="{{obj.inputstyle}}">
+                                            style="{{obj.inputstyle}}">
                                             <input id="{{useList.title}}-Input-{{obj.name}}"
-                                                    class="{{useList.title}}-Input-{{obj.type}}"
-                                                    name="{{obj.name}}"
-                                                    type="{{obj.type}}"
-                                                    value="{{obj.value}}"
-                                                    ng-model="obj.value"
-                                                    ng-keydown="useList.onKeydown(obj);"
-                                                    ng-keyup="useList.onKeyup(obj);"
-                                                    ng-focus="useList.onFocus(obj);"
-                                                    ng-blur="useList.onBlur(obj);" />
+                                                   class="{{useList.title}}-Input-{{obj.type}}"
+                                                   name="{{obj.name}}"
+                                                   type="{{obj.type}}"
+                                                   value="{{obj.value}}"
+                                                   ng-model="obj.value"
+                                                   ng-keydown="useList.onKeydown(obj);"
+                                                   ng-keyup="useList.onKeyup(obj);"
+                                                   ng-focus="useList.onFocus(obj);"
+                                                   ng-blur="useList.onBlur(obj);" />
                                             <div id="{{useList.title}}-Text-{{obj.name}}"
-                                                    class="{{useList.title}}-Text-{{obj.type}}">
+                                                 class="{{useList.title}}-Text-{{obj.type}}">
                                                 {{obj.value === "false" ? obj.alttext : obj.helptext}}
                                             </div>
                                         </td>
                                         <td style="{{obj.textareastyle}}">
                                             <textarea id="{{useList.title}}-Input-{{obj.name}}"
-                                                    class="{{useList.title}}-Input-{{obj.type}}"
-                                                    ng-model="obj.value"
-                                                    ng-keydown="useList.onKeydown(obj);"
-                                                    ng-keyup="useList.onKeyup(obj);"
-                                                    ng-focus="useList.onFocus(obj);"
-                                                    ng-blur="useList.onBlur(obj);">
-                                            {{obj.value}}
+                                                      class="{{useList.title}}-Input-{{obj.type}}"
+                                                      ng-model="obj.value"
+                                                      ng-keydown="useList.onKeydown(obj);"
+                                                      ng-keyup="useList.onKeyup(obj);"
+                                                      ng-focus="useList.onFocus(obj);"
+                                                      ng-blur="useList.onBlur(obj);">
+                                                {{obj.value}}
                                             </textarea>
                                         </td>
                                         <td></td>
@@ -143,8 +143,7 @@
                         </form>
                         <div id="{{useList.title}}-Modal" class="modal">
                             <div class="modal-content">
-                                <span class="close"></span>
-                                <span class="close"></span>
+                                <span id="{{useList.title}}-Modal-close" class="close">&lt;ok&gt;</span>
                                 <p class="{{useList.title}}-Model-Entry" ng-repeat="obj in useList.results"><b>{{obj.name}}:</b>&nbsp;{{obj.message}}</p>
                             </div>
                         </div>

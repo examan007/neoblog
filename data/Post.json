@@ -1,0 +1,58 @@
+{
+  "map": [
+    {
+      "name": "Username",
+      "index":  "10",
+      "value": "",
+      "type": "text",
+      "initial": "<anonymous>",
+      "validate":  "userlinked",
+      "filteregx": "^[ a-z0-9]+$",
+      "filtermod": "i",
+      "input": "",
+      "output": "",
+      "minlength":  "0",
+      "inputstyle": "display:block",
+      "textareastyle": "display:none"
+    },
+    {
+      "name": "Password",
+      "index": "10",
+      "value": "",
+      "type": "hidden",
+      "initial": "<enter your password>",
+      "validate":  "boolean",
+      "filteregx": "^[!@#$%^&* a-z0-9]+$",
+      "filtermod": "i",
+      "minlength": "8",
+      "inputstyle": "display:block",
+      "textareastyle": "display:none"
+    },
+    {
+      "name": "Title",
+      "index":  "15",
+      "value": "",
+      "type": "text",
+      "initial": "<please enter title>",
+      "validate":  "username",
+      "filteregx": "^[ a-z0-9]+$",
+      "filtermod": "i",
+      "minlength":  "1",
+      "inputstyle": "display:block",
+      "textareastyle": "display:none"
+    },
+    {
+      "name": "Message",
+      "index":  "20",
+      "value": "",
+      "type": "text",
+      "initial": "<please enter comment>",
+      "validate":  "username",
+      "filteregx": "^[ a-z0-9]+$",
+      "filtermod": "i",
+      "minlength":  "1",
+      "inputstyle": "display:none",
+      "textareastyle": "display:block"
+    }
+  ]
+}

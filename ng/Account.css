@@ -1,13 +1,23 @@
 ﻿#Account {
     text-align: center;
 }
+#Post-Table {
+    width: 100%;
+}
 #Post-Form-Wrap {
     padding-left: 10%;
 }
 #Post-Input-Message {
-    width: 30em;
+    width: 100%;
     height: 10em;
 }
 .Post-Input-text {
-    width: 30em;
+    width: 100%;
 }
+.copyright {
+    display: none;
+}
+.Post-Attribute {
+    display: none;
+}
+
