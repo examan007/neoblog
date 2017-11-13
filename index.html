@@ -32,6 +32,7 @@
     <script type="text/javascript" src="public/RepeatObj.js?1002"></script>
     <script type="text/javascript" src="public/UserObj.js?1002"></script>
     <script type="text/javascript" src="public/services.js?1002"></script>
+    <script type="text/javascript" src="ng/blogger.js?1002"></script>
     <!-- Navigation -->
     <div ng-app="routerApp">
         <div ng-controller="UIRouterController as UIRouter">
@@ -147,76 +148,36 @@
                                 <p class="{{useList.title}}-Model-Entry" ng-repeat="obj in useList.results"><b>{{obj.name}}:</b>&nbsp;{{obj.message}}</p>
                             </div>
                         </div>
+                        <div class="clearfix">
+                            <a class="btn btn-primary btn-router" href="#!/home">&larr; Blog</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="Blog" class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-                        <div class="post-preview">
-                            <a href="post.html">
-                                <h2 class="post-title">
-                                    Man must explore, and this is exploration at its greatest
-                                </h2>
-                                <h3 class="post-subtitle">
-                                    Problems look mighty small from 150 miles up
-                                </h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#">Start Bootstrap</a>
-                                on September 24, 2017
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="post-preview">
-                            <a href="post.html">
-                                <h2 class="post-title">
-                                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                                </h2>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#">Start Bootstrap</a>
-                                on September 18, 2017
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="post-preview">
-                            <a href="post.html">
-                                <h2 class="post-title">
-                                    Science has not yet mastered prophecy
-                                </h2>
-                                <h3 class="post-subtitle">
-                                    We predict too much for the next year and yet far too little for the next ten.
-                                </h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#">Start Bootstrap</a>
-                                on August 24, 2017
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="post-preview">
-                            <a href="post.html">
-                                <h2 class="post-title">
-                                    Failure is not an option
-                                </h2>
-                                <h3 class="post-subtitle">
-                                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                                </h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#">Start Bootstrap</a>
-                                on July 8, 2017
-                            </p>
-                        </div>
-                        <hr>
-                        <!-- Pager -->
-                        <div class="clearfix">
-                            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            <div ng-app="blogApp">
+                <div id="Blog" class="container">
+                    <div class="row" ng-controller="BlogController as blogger">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            <div class="post-preview" ng-repeat="obj in blogger.objects">
+                                <a href="index.html">
+                                    <h2 class="post-title">
+                                        {{obj.Title}}
+                                    </h2>
+                                    <h3 class="post-subtitle">
+                                        {{obj.Message}}
+                                    </h3>
+                                </a>
+                                <p class="post-meta">
+                                    Posted by &lt;anonymous&gt;
+                                    on {{obj.Create}}
+                                </p>
+                            </div>
+                            <hr>
+                            <hr>
+                            <!-- Pager -->
+                            <div class="clearfix">
+                                <a class="btn btn-primary btn-router" href="#!/post">Post &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -224,7 +185,7 @@
             <hr>
             <!-- Footer -->
             <footer>
-                <div class="container">
+                <div class="container" style="display:none">
                     <div class="row">
                         <div class="col-lg-8 col-md-10 mx-auto">
                             <ul class="list-inline text-center">

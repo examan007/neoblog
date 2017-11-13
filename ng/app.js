@@ -22,6 +22,13 @@ var Application = {
 var Controller = {
     UserId: 0,
     Password: 'nginx',
+    Modal: null,
+    setModal: function (name) {
+        if (Controller.Modal == null) {
+            Controller.Modal = RepeatObj.useList.setModal(name);
+        }
+        return (Controller.Modal);
+    },
     options: function (obj) {
         console.log('options' + JSON.stringify(obj));
     },
@@ -40,7 +47,8 @@ var Controller = {
         console.log('select' + JSON.stringify(obj));
 //        console.log('useList.objects=' + JSON.stringify(RepeatObj.useList.objects));
         var entry = Controller.interchange();
-        var modalobj = RepeatObj.useList.setModal('Post');
+        Controller.Modal = null;
+        var modalobj = Controller.setModal('Post');
         modalobj.base_hide = modalobj.hide;
         modalobj.hide = function () {
             modalobj.base_hide();
@@ -78,17 +86,16 @@ config_routerApp();
 addServicesList('Post', '/data/Post.json');
 RepeatObj.useList.actions = ['Send to Blog.'];
 RepeatObj.useList.userlinked =  function (value, obj) {
-    var ret = false;
-    if ((ret = RepeatObj.useList.username(value, obj)) == true) {
-        if (value.length > 0) {
-            RepeatObj.useList.results.push({
-                name: "Not Allowed:",
-                message: "Only anonymous posts are supported."
-            });
-            ret = false;
-        }
-    } else {
+    var ret = RepeatObj.useList.username(value, obj);
+    Controller.setModal('Post');
+    if (ret == true  && value.length > 0) {
+        RepeatObj.useList.results.push({
+            name: "Not Allowed:",
+            message: "Only anonymous posts are supported."
+        });
+        ret = false;
     }
     return (ret);
 }
+intializeBlogger();
 
