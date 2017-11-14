@@ -23,6 +23,7 @@ var Controller = {
     UserId: 0,
     Password: 'nginx',
     Modal: null,
+    List: null,
     setModal: function (name) {
         if (Controller.Modal == null) {
             Controller.Modal = RepeatObj.useList.setModal(name);
@@ -63,27 +64,39 @@ var Controller = {
     checkForm: function (success, failure, data) {
         var funcname = 'Controller.checkForm';
         var ret = false;
+        function complete (callback) {
+            var success = callback
+            return (function () {
+                RepeatObj.useList.results = [];
+                RepeatObj.useList.results.push({
+                    name: "Successfully sent:",
+                    message: "Blog will be updated after message has been approved."
+                });
+                Controller.clearflag = true;
+                RepeatObj.useList.dialog.show();
+                success();
+            })
+        }
         try {
             console.log(funcname + data);
             ret = true;
-            RepeatObj.useList.results = [];
-            RepeatObj.useList.results.push({
-                name: "Successfully sent:",
-                message: "Blog will be updated after message has been approved."
-            });
-            Controller.clearflag = true;
-            RepeatObj.useList.dialog.show();
-            success();
+            if (Controller.List == null) {
+                failure('Error, Controller.List is null!');
+            } else {
+                Controller.List.sendData('https://chicnun.com/private/post.json', data, complete(success), failure);
+            }
         } catch (e) {
             console.log(funcname + e.toString());
         }
         return (ret);
     },
-
 }
+try {
+    $(document.getElementById('Account')).hide();
+} catch (e) {}
 execute_routerApp();
 config_routerApp();
-addServicesList('Post', '/data/Post.json');
+Controller.List = addServicesList('Post', '/data/Post.json');
 RepeatObj.useList.actions = ['Send to Blog.'];
 RepeatObj.useList.userlinked =  function (value, obj) {
     var ret = RepeatObj.useList.username(value, obj);

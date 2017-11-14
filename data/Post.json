@@ -47,7 +47,7 @@
       "value": "",
       "type": "text",
       "initial": "<please enter comment>",
-      "validate":  "username",
+      "validate":  "boolean",
       "filteregx": "^[ a-z0-9]+$",
       "filtermod": "i",
       "minlength":  "1",

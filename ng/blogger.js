@@ -4,6 +4,7 @@ function intializeBlogger() {
     BlogObj.controller('BlogController', ['$scope', function ($scope) {
         var blogger = this;
         BlogObj.blogger = blogger;
+        blogger.title = 'Blog';
         blogger.scope = $scope;
         blogger.objects = [{
             Title: 'test',
@@ -19,7 +20,7 @@ function intializeBlogger() {
     }]);
     BlogObj.list = addBlogList('Blog', '/data/Blog.json');
     function addBlogList(name, file) {
-        angular.bootstrap(document.getElementById("Blog"), ['blogApp']);
+        angular.bootstrap(document.getElementById("divBlog"), ['blogApp']);
         var list = RepeatObj.addList(name, file, function () {
             showService(name);
             function showService(name) {

@@ -79,29 +79,44 @@
                 </div>
             </header>
             <!-- Main Content -->
-            <div id="divWrap" ng-app="useApp">
-                <div id="Account" style="display:none">
-                    <div ng-controller="UseController as useList">
-                        <form name="{{useList.title}}-Form" method="post" ng-submit="useList.validate(this);" target="_blank">
-                            <table id="{{useList.title}}-Data-Table" width="100%">
-                                <tr>
-                                    <td width="30%"></td>
-                                    <td>
-                                        <h2 class="{{useList.title}}-Header">{{useList.title}}</h2>
-                                    </td>
-                                    <td ng-repeat="obj in useList.actions" style="text-align:left">
-                                        <button class="Toolbar-Button"
-                                                id="{{useList.title}}-Save-{{obj}}"
-                                                onclick="Controller.select(this)">
-                                            <span id="Save-Span">
-                                                {{obj}}
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div id="{{useList.title}}-Form-Wrap">
+            <div id="divWrap" class="Wrapper" ng-app="useApp">
+                <div id="Account" class="container">
+                    <div class="row" ng-controller="UseController as useList">
+                        <table id="{{useList.title}}-Data-Table" class="Data-Table noselect">
+                            <tr>
+                                <td style="text-align:right">
+                                    <div class="clearfix">
+                                        <a class="btn btn-primary btn-router" href="#!/home">&larr; Blog</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2 class="{{useList.title}}-Header">{{useList.title}}</h2>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-router Toolbar-Button"
+                                            onclick="document.getElementById('Post-Save-Button').click();">
+                                        <span id="Save-Span">
+                                            Send to Blog
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="{{useList.title}}-Form-Wrap" class="col-lg-8 col-md-10 mx-auto">
+                            <form name="{{useList.title}}-Form" method="post" ng-submit="useList.validate(this);">
                                 <table id="{{useList.title}}-Table">
+                                    <tr>
+                                        <td colspan="3">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <button style="display:none"
+                                                    id="{{useList.title}}-Save-Button"
+                                                    onclick="Controller.select(this)"></button>
+                                        </td>
+                                    </tr>
                                     <tr ng-repeat="obj in useList.objects">
                                         <td class="{{useList.title}}-Attribute" colspan="1">
                                             <span class="done-{{obj.name}}">{{obj.name}}:&nbsp;</span>
@@ -134,29 +149,36 @@
                                                 {{obj.value}}
                                             </textarea>
                                         </td>
-                                        <td></td>
                                     </tr>
                                 </table>
-                            </div>
-                            <div>
-                                &nbsp;
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                         <div id="{{useList.title}}-Modal" class="modal">
                             <div class="modal-content">
-                                <span id="{{useList.title}}-Modal-close" class="close">&lt;ok&gt;</span>
                                 <p class="{{useList.title}}-Model-Entry" ng-repeat="obj in useList.results"><b>{{obj.name}}:</b>&nbsp;{{obj.message}}</p>
+                                <span id="{{useList.title}}-Modal-close" class="close">&lt;ok&gt;</span>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <a class="btn btn-primary btn-router" href="#!/home">&larr; Blog</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div ng-app="blogApp">
+            <div id="divBlog" class="Wrapper" ng-app="blogApp">
                 <div id="Blog" class="container">
                     <div class="row" ng-controller="BlogController as blogger">
+                        <table id="{{blogger.title}}-Data-Table" class="Data-Table noselect">
+                            <tr>
+                                <td>
+                                    <h2 class="{{blogger.title}}-Header">{{blogger.title}}</h2>
+                                </td>
+                                <td style="text-align:left">
+                                    <div class="clearfix">
+                                        <a class="btn btn-primary btn-router" href="#!/post">Post &rarr;</a>
+                                    </div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
                         <div class="col-lg-8 col-md-10 mx-auto">
                             <div class="post-preview" ng-repeat="obj in blogger.objects">
                                 <a href="index.html">
@@ -171,9 +193,8 @@
                                     Posted by &lt;anonymous&gt;
                                     on {{obj.Create}}
                                 </p>
+                                <hr />
                             </div>
-                            <hr>
-                            <hr>
                             <!-- Pager -->
                             <div class="clearfix">
                                 <a class="btn btn-primary btn-router" href="#!/post">Post &rarr;</a>

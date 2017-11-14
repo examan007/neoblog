@@ -5,7 +5,7 @@
     width: 100%;
 }
 #Post-Form-Wrap {
-    padding-left: 10%;
+    padding-left: 5%;
 }
 #Post-Input-Message {
     width: 100%;
@@ -20,5 +20,33 @@
 }
 .Post-Attribute {
     display: none;
+}
+.Data-Table {
+    padding: 0px;
+    margin: 0px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    left: 33%;
+}
+.Wrapper {
+    position: relative;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.container {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.row {
+    width: 100%;
 }
 
