@@ -19,7 +19,8 @@
     display: none;
 }
 .Post-Attribute {
-    display: none;
+    visibility: hidden;
+    width: 15%;
 }
 .Data-Table {
     padding: 0px;
@@ -29,6 +30,9 @@
     width: 100%;
     position: relative;
     left: 33%;
+}
+#Account-Data-Table {
+    width: 100%;
 }
 .Wrapper {
     position: relative;

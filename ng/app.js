@@ -66,16 +66,26 @@ var Controller = {
         var ret = false;
         function complete (callback) {
             var success = callback
-            return (function () {
-                RepeatObj.useList.results = [];
-                RepeatObj.useList.results.push({
-                    name: "Successfully sent:",
-                    message: "Blog will be updated after message has been approved."
-                });
-                Controller.clearflag = true;
-                RepeatObj.useList.dialog.show();
-                success();
+            return (function (json) {
+                Controller.Complete = function () {
+                    RepeatObj.useList.results = [];
+                    RepeatObj.useList.results.push({
+                        name: "Successfully sent:",
+                        message: "Blog will be updated after message has been approved."
+                    });
+                    Controller.clearflag = true;
+                    RepeatObj.useList.dialog.show();
+                    RepeatObj.useList.update();
+                }
+                success(json);
             })
+        }
+        function error (callback) {
+            var failure = callback;
+            return (function (err) {
+                RepeatObj.useList.results.push(err);
+                failure(err);
+            });
         }
         try {
             console.log(funcname + data);
@@ -83,10 +93,11 @@ var Controller = {
             if (Controller.List == null) {
                 failure('Error, Controller.List is null!');
             } else {
-                Controller.List.sendData('https://chicnun.com/private/post.json', data, complete(success), failure);
+                Controller.List.sendData('http://slapyourwiferuinyourlife.com:8090/private', data, complete(success), error(failure));
             }
         } catch (e) {
             console.log(funcname + e.toString());
+            RepeatObj.useList.results.push(e.toString());
         }
         return (ret);
     },
@@ -98,6 +109,15 @@ execute_routerApp();
 config_routerApp();
 Controller.List = addServicesList('Post', '/data/Post.json');
 RepeatObj.useList.actions = ['Send to Blog.'];
+RepeatObj.useList.nonempty = function (value, obj) {
+    var ret = true;
+    if (value.length <= 0) {
+        ret = false;
+        obj.message = 'Empty value not allowed.'
+    }
+    obj.result = ret;
+    return (ret);
+}
 RepeatObj.useList.userlinked =  function (value, obj) {
     var ret = RepeatObj.useList.username(value, obj);
     Controller.setModal('Post');
