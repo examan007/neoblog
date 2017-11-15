@@ -71,7 +71,7 @@ var Controller = {
                     RepeatObj.useList.results = [];
                     RepeatObj.useList.results.push({
                         name: "Successfully sent:",
-                        message: "Blog will be updated after message has been approved."
+                        message: "Blog will be updated once message has been approved."
                     });
                     Controller.clearflag = true;
                     RepeatObj.useList.dialog.show();
@@ -93,7 +93,7 @@ var Controller = {
             if (Controller.List == null) {
                 failure('Error, Controller.List is null!');
             } else {
-                Controller.List.sendData('http://slapyourwiferuinyourlife.com:8090/private', data, complete(success), error(failure));
+                Controller.List.sendData('http://chicnun.com:8090/private', data, complete(success), error(failure));
             }
         } catch (e) {
             console.log(funcname + e.toString());
