@@ -16,19 +16,6 @@
       "textareastyle": "display:none"
     },
     {
-      "name": "Password",
-      "index": "10",
-      "value": "",
-      "type": "hidden",
-      "initial": "<enter your password>",
-      "validate":  "boolean",
-      "filteregx": "^[!@#$%^&* a-z0-9]+$",
-      "filtermod": "i",
-      "minlength": "8",
-      "inputstyle": "display:block",
-      "textareastyle": "display:none"
-    },
-    {
       "name": "Title",
       "index":  "15",
       "value": "",
@@ -42,7 +29,7 @@
       "textareastyle": "display:none"
     },
     {
-      "name": "Message",
+      "name": "Comment",
       "index":  "20",
       "value": "",
       "type": "text",
