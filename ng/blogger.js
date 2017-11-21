@@ -8,14 +8,32 @@ function intializeBlogger() {
         blogger.scope = $scope;
         blogger.objects = [{
             Title: 'test',
-            Message: 'The quick brown fox'
+            Comment: 'The quick brown fox'
         },{
             Title: 'next',
-            Message: 'jumped over the lazy dogs back.'
+            Comment: 'jumped over the lazy dogs back.'
         }
         ];
         blogger.update = function () {
             BlogObj.blogger.scope.$apply();
+        }
+        blogger.CurrentIndex = 0;
+        blogger.getComments = function () {
+            var list = ['a', 'b', 'c'];
+            var obj = {};
+            try {
+                obj = blogger.objects[blogger.CurrentIndex];
+                blogger.CurrentIndex++;
+                if (blogger.CurrentIndex > blogger.objects.length) {
+                    blogger.CurrentIndex = 0;
+                }
+                var comment = obj['Comment'];
+                list = eval(comment);
+            } catch (e) {
+                alert('getComments()'  + e.toString());
+            }
+            alert(JSON.stringify(obj) + '|' + JSON.stringify(list));
+            return (list);
         }
     }]);
     BlogObj.list = addBlogList('Blog', '/data/Blog.json');

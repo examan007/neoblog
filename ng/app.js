@@ -87,8 +87,21 @@ var Controller = {
                 failure(err);
             });
         }
+        function translate (data) {
+        	var objects = RepeatObj.useList.objects; //data;
+            var fields = RepeatObj.useList.fields;;
+	        for (var i = 0; i < objects.length; i++) {
+	            var obj = objects[i];
+	            var name = obj.name;
+                obj.data = data;
+	            RepeatObj.useList.checkAttr(obj, obj.value, 'output');
+                console.log('translate()' + JSON.stringify(obj));
+	        }
+        }
         try {
-            console.log(funcname + data);
+            console.log(funcname + JSON.stringify(data));
+            translate(data);
+            console.log('translated' + JSON.stringify(data));
             ret = true;
             if (Controller.List == null) {
                 failure('Error, Controller.List is null!');
@@ -100,7 +113,7 @@ var Controller = {
             RepeatObj.useList.results.push(e.toString());
         }
         return (ret);
-    },
+    }
 }
 try {
     $(document.getElementById('Account')).hide();
@@ -128,6 +141,38 @@ RepeatObj.useList.userlinked =  function (value, obj) {
         });
         ret = false;
     }
+    return (ret);
+}
+RepeatObj.useList.outputmessage = function (value, obj) {
+    var ret = true;
+    var lines = value.split('\n');
+    var first = true;
+    var data = obj.data;
+    lines.forEach( function (value) {
+        try {
+            if (first) {
+                first = false;
+                data.forEach( function (pair) {
+                    if (pair.key == obj.name) {
+                        pair.value = value;
+                        pair.type = 'array';
+                        return (false)
+                    }
+                });
+             } else {
+                var newobj = {
+                    key: obj.name,
+                    value: value,
+                    type: 'array'
+                }
+                data.push(newobj);
+            }
+        } catch (e) {
+            alert(e.toString());
+        }
+    });
+    console.log('outputmessage' + JSON.stringify(lines));
+    obj.result = true;
     return (ret);
 }
 intializeBlogger();

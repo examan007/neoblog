@@ -38,6 +38,7 @@
       "filteregx": "^[ a-z0-9]+$",
       "filtermod": "i",
       "minlength":  "1",
+      "output": "outputmessage",
       "inputstyle": "display:none",
       "textareastyle": "display:block"
     }
