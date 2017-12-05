@@ -33,7 +33,7 @@ var Controller = {
     options: function (obj) {
         console.log('options' + JSON.stringify(obj));
     },
-    interchange () {
+    interchange: function () {
         var entry = {};
         for (var i = 0; i < RepeatObj.useList.objects.length; i++) {
             var obj = RepeatObj.useList.objects[i];
